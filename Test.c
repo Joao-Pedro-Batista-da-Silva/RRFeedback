@@ -1,6 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX_SIZE 100  
 
+int queue[MAX_SIZE];  
+int front = -1;  
+int rear = -1;    
+void enqueue(int element) {  
+    if (rear == MAX_SIZE - 1) {  
+        printf("Queue is full");  
+        return;  
+    }  
+    if (front == -1) {  
+        front = 0;  
+    }  
+    rear++;  
+    queue[rear] = element;  
+}  
+
+int dequeue() {  
+    if (front == -1 || front > rear) {  
+        printf("Queue is empty");  
+        return -1;  
+    }  
+    int element = queue[front];  
+    front++;  
+    return element;  
+}  
 //Limite de processos 5
 
 enum tipoIO{
@@ -48,15 +73,15 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
         }
     }
 
+    //Montando o gráfico RR 
     while(contadorFinalizados < numProcess){
         for(int i = 0; i < 5; i++){
             if(processosOrdenados[i].tempoRestante > 0 && processosOrdenados[i].tempoChegada <= instanteAtual){
+                enqueue(processosOrdenados[i].PID);
                 if(processosOrdenados[i].tempoRestante > quantum){
-                    //acaba Quantum
                     instanteAtual += quantum;
                     processosOrdenados[i].tempoRestante -= quantum;
                 } else {
-                    //acaba Quantum
                     instanteAtual += processosOrdenados[i].tempoRestante;
                     processosOrdenados[i].tempoRestante = 0;
                     contadorFinalizados +=1;
@@ -75,6 +100,7 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
 
 int main(){
     struct processo processos[5];
+    struct processo pprov;
     int numProcessos = 5;
     for(int i = 0; i < numProcessos; i++){
         printf("Processo número %d\n", i);
@@ -94,11 +120,11 @@ int main(){
         processos[i].status = novo;
     }
 
-    for(int i = 0; i < 5; i++){
+    /*for(int i = 0; i < 5; i++){
         printf("Processo número %d\n", i);
         printf("%d \t %d \t %d\n\n", processos[i].tempoChegada, processos[i].tempoServico, processos[i].tipo);
-    }
-    
+    }*/
+
     calculaTurnaround(processos, 5,5);
     return 0;
 }
