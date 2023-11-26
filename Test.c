@@ -57,8 +57,7 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
     struct processo processoDaVez;
     struct processo processosOrdenados[5];
     struct fila infoFila;
-    int contadorFinalizados = 0, instanteAtual = 0;
-
+    int contadorFinalizados = 0, instanteAtual = 0, contadorInstante = 0,processoIDdaVez, numQuantuns = 0;
     //Ordenando processos por tempo de chegada
     for(int i = 0; i < numProcess; i++){
         processosOrdenados[i] = p[i];
@@ -75,27 +74,44 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
 
     //Montando o gráfico RR 
     while(contadorFinalizados < numProcess){
-        for(int i = 0; i < 5; i++){
+        /*for(int i = 0; i < 5; i++){
             if(processosOrdenados[i].tempoRestante > 0 && processosOrdenados[i].tempoChegada <= instanteAtual){
-                enqueue(processosOrdenados[i].PID);
                 if(processosOrdenados[i].tempoRestante > quantum){
                     instanteAtual += quantum;
                     processosOrdenados[i].tempoRestante -= quantum;
+                    dequeue();
                 } else {
                     instanteAtual += processosOrdenados[i].tempoRestante;
                     processosOrdenados[i].tempoRestante = 0;
                     contadorFinalizados +=1;
+                    dequeue();
                 }
             printf("Instante:%d \tProcesso:%d \tTempo restante:%d\n", instanteAtual, i+1, processosOrdenados[i].tempoRestante);
             }
+        }*/
+        for(int i = 0; i<5;i++){
+            if(processosOrdenados[i].tempoChegada<=contadorInstante && processosOrdenados[i].tempoRestante>0){
+                for(int j = 0; j<rear+1;j++){
+                    if(processosOrdenados[i].PID == queue[j]){
+                        dequeue();
+                    }
+                }
+                enqueue(processosOrdenados[i].PID);
+            }
         }
+        if(contadorInstante == quantum){
+            processoIDdaVez = dequeue();
+            processosOrdenados[processoIDdaVez].tempoRestante-=quantum;
+            numQuantuns +=1;
+        }
+        contadorInstante+=1;
     }
-
+/*
     for(int i = 0; i < 5; i++){
         printf("Processo chega:%d\n",processosOrdenados[i].tempoChegada);
     }
-
-    return 0;
+*/
+    return 0; 
 }
 
 int main(){
