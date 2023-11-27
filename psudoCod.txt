@@ -1,9 +1,0 @@
-while(true):
-    if(chegada<instanteAtual && tempoRestante > 0)
-        verificaSeProcessoEstaNaFila
-        adicionaNaFila(Nao adicionar oq ja esta na fila);
-    if(instanteAtual == quantum):
-        pegaPrimeiroDaFila:
-            atualizaTempoRestante;
-        numQuantuns+=1
-    instanteAtual+=1

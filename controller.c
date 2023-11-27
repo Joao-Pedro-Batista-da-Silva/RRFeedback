@@ -1,76 +1,5 @@
-#include <stdio.h>
+
 #include <stdlib.h>
-#define MAX_SIZE 100
-
-//Limite de processos 5
-
-typedef struct q {
-    int queue[MAX_SIZE];
-    int front;
-    int rear;
-    int numElementos;
-} queue_type;
-
-void startQueue(queue_type *queueTemp){
-    queueTemp->front = -1;
-    queueTemp->rear = -1;
-    queueTemp->numElementos = 0;
-}
-
-void push(int element, queue_type *queueTemp) {
-    if (queueTemp->rear == MAX_SIZE - 1) {
-        printf("Queue is full");
-        return;
-    }
-    if (queueTemp->front == -1) {
-        queueTemp->front = 0;
-    }
-    queueTemp->rear++;
-    queueTemp->queue[queueTemp->rear] = element;
-    queueTemp->numElementos++;
-    printf("entrou %d na fila, numElementos %d\n", element, queueTemp->numElementos);
-}
-
-int pop(queue_type *queueTemp)  {
-    if (queueTemp->front == -1 || queueTemp->front > queueTemp->rear) {
-        printf("Queue is empty");
-        return -1;
-    }
-    int element = queueTemp->queue[queueTemp->front];
-    queueTemp->front++;
-    queueTemp->numElementos--;
-    printf("saiu %d da fila, numElementos %d\n", element, queueTemp->numElementos);
-    return element;
-}
-
-void printaFila(queue_type *queueTemp){
-    printf("Elementos na fila: ");
-    for(int i = queueTemp->front; i < queueTemp->numElementos + queueTemp->front; i++){
-        printf("%d ", queueTemp->queue[i]);
-    }
-    printf("| numElementos: %d\n", queueTemp->numElementos);
-    puts("");
-}
-
-enum tipoIO{
-    disco, fita, impressora
-};
-
-enum estadoProcesso{
-    novo, pronto, execucao, bloqueado, finalizado
-};
-
-struct processo{
-    int tempoChegada;
-    int tempoServico;
-    int tempoRestante;
-    enum tipoIO tipo;
-    // PCB
-    int PID;        // Process  ID
-    int PPID;       // Parent Process ID
-    int prioridade;
-    enum estadoProcesso status;
-};
 
 int calculaTurnaround(struct processo p[], int numProcess,int quantum){
     struct processo processoDaVez;
@@ -123,7 +52,7 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
             }
         }
 
-        printaFila(&queueHigh);
+        printQueue(&queueHigh);
         
         if(queueHigh.numElementos > 0){
             int PIDAtual = queueHigh.queue[queueHigh.front];
@@ -158,30 +87,5 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
         printf("Processo chega:%d\n",processosOrdenados[i].tempoChegada);
     }
 
-    return 0;
-}
-
-int main(){
-    struct processo processos[5];
-    int numProcessos = 5;
-    for(int i = 0; i < numProcessos; i++){
-        //printf("Processo número %d\n", i);
-        
-        //printf("Entre com o tempo de chegada: ");
-        scanf("%d", &processos[i].tempoChegada);
-
-        //printf("Entre com o tempo de serviço: ");
-        scanf("%d", &processos[i].tempoServico);
-
-        //printf("Entre com o tipo de IO (0 = Disco, 1 = Fita, 2 = Impressora): ");
-        scanf("%d", &processos[i].tipo);
-
-        processos[i].tempoRestante = processos[i].tempoServico;
-        processos[i].PID = i;
-        processos[i].prioridade = 0;
-        processos[i].status = novo;
-    }
-    
-    calculaTurnaround(processos, 5,5);
     return 0;
 }
