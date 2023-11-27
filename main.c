@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "queue.c"
+#include "constants.h"
 #include "processo.h"
+#include "queue.c"
 #include "controller.c"
 
 int main(){
-    struct processo processos[5];
-    int numProcessos = 5;
-    for(int i = 0; i < numProcessos; i++){
+    struct processo processos[MAX_PROCESSOS];
+
+    for(int i = 0; i < MAX_PROCESSOS; i++){
         //printf("Processo número %d\n", i);
         
         //printf("Entre com o tempo de chegada: ");
@@ -25,6 +26,6 @@ int main(){
         processos[i].status = novo;
     }
     
-    calculaTurnaround(processos, 5,5);
+    calculaTurnaround(processos);
     return 0;
 }
