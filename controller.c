@@ -3,7 +3,7 @@
 
 int calculaTurnaround(struct processo p[]){
     struct processo processoDaVez;
-    struct processo processosOrdenados[5];
+    struct processo processosOrdenados[MAX_PROCESSOS];
     int contadorFinalizados = 0, instanteAtual = 0, tempoDesdeUltimoQuantum = 0;
     queue_type queueHigh, queueLow;
     startQueue(&queueHigh);
@@ -36,10 +36,26 @@ int calculaTurnaround(struct processo p[]){
                 printf("PID %d entrou no if | numElementos: %d | front: %d | rear: %d\n", processosOrdenados[i].PID, queueHigh.numElementos, queueHigh.front, queueHigh.rear);
                 int processoNaFila = 0;
 
+                /*
+                possiveis processos:
+                - processo na alta e não na baixa: ele não vai ser adicionado na fila, e vai ser exexcutado se for o primeiro
+                - processo na baixa e não na alta: não vai ser adicionado na fila, e vai ser executado se for o primeiro da fila e estiver sem fila de alta prioridade
+                - processo nem na baixa e nem na alta: vai ser adicionado na fila de alta prioridade
+                */
+
                 if(queueHigh.numElementos != 0){
                     for(int j = queueHigh.front; j < queueHigh.numElementos + queueHigh.front; j++){
                         if(processosOrdenados[i].PID == queueHigh.queue[j]){
-                            printf("%d já está na fila\n", processosOrdenados[i].PID);
+                            printf("%d já está na fila de alta\n", processosOrdenados[i].PID);
+                            processoNaFila = 1;
+                        }
+                    }
+                }
+
+                if(queueLow.numElementos != 0) {
+                    for(int j = queueLow.front; j < queueLow.numElementos + queueLow.front; j++){
+                        if(processosOrdenados[i].PID == queueLow.queue[j]){
+                            printf("%d já está na fila de BAIXA\n", processosOrdenados[i].PID);
                             processoNaFila = 1;
                         }
                     }
@@ -51,8 +67,15 @@ int calculaTurnaround(struct processo p[]){
             }
         }
 
-        printQueue(&queueHigh);
+        if(queueHigh.numElementos > 0){
+            printf("(alta prioridade) ");
+            printQueue(&queueHigh);
+        } else if(queueLow.numElementos > 0){
+            printf("(BAIXA prioridade) ");
+            printQueue(&queueLow);
+        }
         
+        // Faz lógica de retirar 1 do tempo do processo, retirar ele da fila e terminar quantum
         if(queueHigh.numElementos > 0){
             int PIDAtual = queueHigh.queue[queueHigh.front];
 
@@ -63,14 +86,31 @@ int calculaTurnaround(struct processo p[]){
             }
 
             // Se já passou um quantum, tira da fila e reinicia o quantum
-            // TODO: colocar no mesmo if, com um OR (||)
-            if(tempoDesdeUltimoQuantum == QUANTUM && instanteAtual != 0){
-                printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
+            if((tempoDesdeUltimoQuantum == QUANTUM && instanteAtual != 0) || processosOrdenados[PIDAtual].tempoRestante <= 0){
+                if(processosOrdenados[PIDAtual].tempoRestante <= 0){
+                    printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
+                } else {
+                    printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
+                    push(processosOrdenados[PIDAtual].PID, &queueLow);
+                }
                 pop(&queueHigh);
                 tempoDesdeUltimoQuantum = 0;
-            } else if(processosOrdenados[PIDAtual].tempoRestante <= 0){
-                printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
-                pop(&queueHigh);
+            }
+        } else if(queueLow.numElementos > 0){
+            int PIDAtual = queueLow.queue[queueLow.front];
+
+            if(processosOrdenados[PIDAtual].tempoRestante > 0 && instanteAtual != 0){
+                processosOrdenados[PIDAtual].tempoRestante -= 1;
+                printf("BAIXA PRIORIDADE processo PID %d tempo -= 1, agora com tempoRestante: %d\n", PIDAtual, processosOrdenados[PIDAtual].tempoRestante);
+            }
+
+            if(tempoDesdeUltimoQuantum == QUANTUM && instanteAtual != 0 || processosOrdenados[PIDAtual].tempoRestante <= 0){
+                if(processosOrdenados[PIDAtual].tempoRestante <= 0){
+                    printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
+                } else {
+                    printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
+                }
+                pop(&queueLow);
                 tempoDesdeUltimoQuantum = 0;
             }
         }
@@ -87,7 +127,7 @@ int calculaTurnaround(struct processo p[]){
         tempoDesdeUltimoQuantum += 1;
     }
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < MAX_PROCESSOS; i++){
         printf("Processo chega:%d\n",processosOrdenados[i].tempoChegada);
     }
 

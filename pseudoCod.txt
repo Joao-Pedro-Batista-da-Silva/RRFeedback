@@ -1,0 +1,56 @@
+function cpu()
+    criaFilaDisco
+    criaFilaFita
+    criaFilaImpressora
+    criaFilaAltaPrioridade
+    criaFilaBaixaPrioridade
+    verificaOsInstante
+        (Se entrar em um if não entrar no outro naquele Instante)
+        if instanteAtual-tempoChegadaProcesso == tempoChegadaIO
+            verificaTipoIO
+                if tipo == Disco
+                    filaDisco.push()
+                    se (filaDisco[front].tempoRestante =<0)
+                        filaBaixaPrioridade.push(processo[instanteAtual])
+                se tipo == Fita
+                    filaFita.push()
+                    se (filaFita[front].tempoRestante =<0)
+                        filaAltaPrioridade.push(processo[instanteAtual])
+                se tipo == Impressora
+                    filaImpressora.push()
+                    se (filaImpressora[front].tempoRestante =<0)
+                        filaAltaPrioridade.push(processo[instanteAtual])
+        if o instanteAtual == tempoChegadaProcesso
+            filaAltaPrioridade.push(processo[instanteAtual])
+            executarFilaDeAltaPrioridade
+        if passarQuantum
+            filaAltaPrioridade.pop()
+            FilaBaixaPrioridade.push(processo[instanteAtual])
+            executarFilaDeBaixaPrioridade
+
+a cada instante
+executar, na ordem:
+    - executar IO
+    - colocar processo chegando (burst) na fila de alta prioridade
+    - ao fim do IO, colocar processo que chamou o IO na fila de baixa/alta prioridade dependendo do tipo do IO
+    ou exclusivo
+    - colocar processo na fila de alta prioridade
+    - fila de alta prioridade
+    - se não houver fila de alta, fila de baixa prioridade
+    
+quantum 5
+0 processo 1 (t = 5)
+3 IO
+5 IO (processo 2 tempoChegada=5 entra na fila, não é executado)
+7 processo 1 (t = 3) (apenas se o tipo do IO não for de baixa prioridade)
+
+instante |    1    2
+0        |
+1        |    █
+2        |    █
+3             █
+4             █
+5             █
+6                  █
+7                  █
+8                  █        
