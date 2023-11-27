@@ -1,0 +1,1 @@
+int calculaTurnaround(struct processo p[]);

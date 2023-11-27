@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+#include "controller.h"
 
 int calculaTurnaround(struct processo p[]){
     struct processo processoDaVez;
