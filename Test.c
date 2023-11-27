@@ -4,51 +4,51 @@
 
 //Limite de processos 5
 
-struct q {
+typedef struct q {
     int queue[MAX_SIZE];
     int front;
     int rear;
     int numElementos;
-} queueHigh, queueLow;
+} queue_type;
 
-void startQueue(struct q queueTemp){
-    queueTemp.front = -1;
-    queueTemp.rear = -1;
-    queueTemp.numElementos = 0;
+void startQueue(queue_type *queueTemp){
+    queueTemp->front = -1;
+    queueTemp->rear = -1;
+    queueTemp->numElementos = 0;
 }
 
-void push(int element, struct q queueTemp) {
-    if (queueTemp.rear == MAX_SIZE - 1) {
+void push(int element, queue_type *queueTemp) {
+    if (queueTemp->rear == MAX_SIZE - 1) {
         printf("Queue is full");
         return;
     }
-    if (queueTemp.front == -1) {
-        front = 0;
+    if (queueTemp->front == -1) {
+        queueTemp->front = 0;
     }
-    queueTemp.rear++;
-    queueTemp.queue[queueTemp.rear] = element;
-    queueTemp.numElementos++;
-    printf("entrou %d na fila, numElementos %d\n", element, queueTemp.numElementos);
+    queueTemp->rear++;
+    queueTemp->queue[queueTemp->rear] = element;
+    queueTemp->numElementos++;
+    printf("entrou %d na fila, numElementos %d\n", element, queueTemp->numElementos);
 }
 
-int pop(struct q queueTemp)  {
-    if (queueTemp.front == -1 || queueTemp.front > queueTemp.rear) {
+int pop(queue_type *queueTemp)  {
+    if (queueTemp->front == -1 || queueTemp->front > queueTemp->rear) {
         printf("Queue is empty");
         return -1;
     }
-    int element = queueTemp.queue[queueTemp.front];
-    queueTemp.front++;
-    queueTemp.numElementos--;
-    printf("saiu %d da fila, numElementos %d\n", element, queueTemp.numElementos);
+    int element = queueTemp->queue[queueTemp->front];
+    queueTemp->front++;
+    queueTemp->numElementos--;
+    printf("saiu %d da fila, numElementos %d\n", element, queueTemp->numElementos);
     return element;
 }
 
-void printaFila(struct q queueTemp){
+void printaFila(queue_type *queueTemp){
     printf("Elementos na fila: ");
-    for(int i = queueTemp.front; i < queueTemp.numElementos + queueTemp.front; i++){
-        printf("%d ", queueTemp.queue[i]);
+    for(int i = queueTemp->front; i < queueTemp->numElementos + queueTemp->front; i++){
+        printf("%d ", queueTemp->queue[i]);
     }
-    printf("| numElementos: %d\n", queueTemp.numElementos);
+    printf("| numElementos: %d\n", queueTemp->numElementos);
     puts("");
 }
 
@@ -75,10 +75,11 @@ struct processo{
 int calculaTurnaround(struct processo p[], int numProcess,int quantum){
     struct processo processoDaVez;
     struct processo processosOrdenados[5];
-    struct fila infoFila;
+    //struct fila infoFila;
     int contadorFinalizados = 0, instanteAtual = 0, tempoDesdeUltimoQuantum = 0;
-    startQueue(queueHigh);
-    startQueue(queueLow);
+    queue_type queueHigh, queueLow;
+    startQueue(&queueHigh);
+    startQueue(&queueLow);
 
     // Inicializando o processosOrdenados
     for(int i = 0; i < numProcess; i++){
@@ -117,15 +118,15 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
                 }
                 
                 if(processoNaFila == 0){
-                    push(processosOrdenados[i].PID, queueHigh);
+                    push(processosOrdenados[i].PID, &queueHigh);
                 }
             }
         }
 
-        printaFila(queueHigh);
+        printaFila(&queueHigh);
         
-        if(numElementos > 0){
-            int PIDAtual = queue[front];
+        if(queueHigh.numElementos > 0){
+            int PIDAtual = queueHigh.queue[queueHigh.front];
             if(processosOrdenados[PIDAtual].tempoRestante > 0 && instanteAtual != 0){
                 processosOrdenados[PIDAtual].tempoRestante -= 1;
                 printf("processo PID %d tempo -= 1, agora com tempoRestante: %d\n", PIDAtual, processosOrdenados[PIDAtual].tempoRestante);
@@ -133,11 +134,11 @@ int calculaTurnaround(struct processo p[], int numProcess,int quantum){
             // se já passou um quantum, tirar da fila
             if(tempoDesdeUltimoQuantum == 5 && instanteAtual != 0){ // instante 19+5
                 printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
-                pop();
+                pop(&queueHigh);
                 tempoDesdeUltimoQuantum = 0;
             } else if(processosOrdenados[PIDAtual].tempoRestante <= 0){ // instante 19
                 printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
-                pop();
+                pop(&queueHigh);
                 tempoDesdeUltimoQuantum = 0;
             }
         }
