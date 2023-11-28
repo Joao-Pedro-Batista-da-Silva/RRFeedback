@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include "controller.h"
 
@@ -28,8 +27,11 @@ int simula(struct processo p[]){
         }
     }
 
-    printf("Instante | Processo\n");
-    printf("---------+---------\n");
+    printf("Instante \t | Processo\n");
+    printf("-----------------+");
+    for(int i = 0; i < MAX_PROCESSOS; i++)
+        printf("--------");
+    printf("\n");
 
     // Simulando a cada instante
     while(contadorFinalizados < MAX_PROCESSOS){
@@ -52,38 +54,54 @@ int simula(struct processo p[]){
                 io IOAtual = processosOrdenados[i].listaIO[j];
                 if(IOAtual.tempoRelativo != 0) continue;
                 processoVoltandoDeIO = 1;
+                int tempoDeIO, tempoAntes = instanteAtual;
                 switch (IOAtual.tipo){
                     case disco:
                         instanteAtual += TEMPO_DISCO;
+                        tempoDeIO = TEMPO_DISCO;
                         // mover processo para baixa prioridade
                         if(queueHigh.queue[queueHigh.front] == processosOrdenados[i].PID){
                             pop(&queueHigh);
                             push(processosOrdenados[i].PID, &queueLow);
                         }
-                        charProcesso[processosOrdenados[i].PID] = 'D';
+                        charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
                         break;
                         
                     case fita:
                         instanteAtual += TEMPO_FITA;
+                        tempoDeIO = TEMPO_FITA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
                         }
-                        charProcesso[processosOrdenados[i].PID] = 'F';
+                        charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
                         break;
 
                     case impressora:
                         instanteAtual += TEMPO_IMPRESSORA;
+                        tempoDeIO = TEMPO_IMPRESSORA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
                         }
-                        charProcesso[processosOrdenados[i].PID] = 'I';
+                        charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
                         break;               
                     default:
                         break;
                     }
-                    processosOrdenados[i].listaIO[j].tempoRelativo = -1;
+                for(int k = 0; k < i; k++)
+                    printf("\t");
+                printf("%c", charProcesso[processosOrdenados[i].PID]);
+                printf("\n");
+
+                for(int j = 1; j <= tempoDeIO; j++){
+                    printf("%d\t\t |\t", tempoAntes+j);
+                    for(int k = 0; k < i; k++)
+                        printf("\t");
+                    printf("%c", charProcesso[processosOrdenados[i].PID]);
+                    if(j != tempoDeIO) printf("\n");
+                }
+                processosOrdenados[i].listaIO[j].tempoRelativo = -1;
                 // }
             }
 
@@ -138,7 +156,7 @@ int simula(struct processo p[]){
             // Retira 1 do tempo restante se não for o primeiro instante
             if(processosOrdenados[PIDAtual].tempoRestante > 0 && instanteAtual != 0){
                 processosOrdenados[PIDAtual].tempoRestante -= 1;
-                charProcesso[PIDAtual] = '+';
+                charProcesso[PIDAtual] = CHAR_FILA_ALTA;
 
                 // Tira 1 tempo relativo de cada IO do processo
                 for(int i = 0; i < processosOrdenados[PIDAtual].quantidadeIO; i++){
@@ -165,7 +183,7 @@ int simula(struct processo p[]){
 
             if(processosOrdenados[PIDAtual].tempoRestante > 0 && instanteAtual != 0){
                 processosOrdenados[PIDAtual].tempoRestante -= 1;
-                charProcesso[PIDAtual] = '+';
+                charProcesso[PIDAtual] = CHAR_FILA_BAIXA;
                 
                 // Tira 1 tempo relativo de cada IO do processo
                 for(int i = 0; i < processosOrdenados[PIDAtual].quantidadeIO; i++){
@@ -193,11 +211,14 @@ int simula(struct processo p[]){
             }
         }
 
-        for(int i = 0; i < MAX_PROCESSOS; i++)
-            printf("%c\t", charProcesso[i]);        
+        if(!processoVoltandoDeIO){
+            for(int i = 0; i < MAX_PROCESSOS; i++)
+                printf("%c\t", charProcesso[i]);
+        }
         
         printf("\n");
         instanteAtual += 1;
+        if(instanteAtual == 1) continue;
         tempoDesdeUltimoQuantum += 1;
     }
 

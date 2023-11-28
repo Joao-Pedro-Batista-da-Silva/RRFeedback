@@ -1,82 +1,124 @@
 Processo número 0
-Entre com o tempo de chegada: 
-Entre com o tempo de serviço: 
-Entre com quantos IO terá esse processo: 
-IO número 0
-Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
-Entre com o tempo relativo ao começo do processo: 
+
+Tempo de chegada: 0
+Tempo de serviço: 7
+
+Numero de IO terá esse processo: 1
+
+IO número 1
+Tipo do IO: 0
+0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo de IO ao começo do processo: 3
 
 Processo número 1
-Entre com o tempo de chegada: 
-Entre com o tempo de serviço: 
-Entre com quantos IO terá esse processo: 
-IO número 0
-Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
-Entre com o tempo relativo ao começo do processo: 
+
+Tempo de chegada: 1
+Tempo de serviço: 10
+
+Numero de IO terá esse processo: 1
+
+IO número 1
+Tipo do IO: 2
+0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo de IO ao começo do processo: 6
 
 Processo número 2
-Entre com o tempo de chegada: 
-Entre com o tempo de serviço: 
-Entre com quantos IO terá esse processo: 
-IO número 0
-Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
-Entre com o tempo relativo ao começo do processo: 
+
+Tempo de chegada: 2
+Tempo de serviço: 9
+
+Numero de IO terá esse processo: 1
+
+IO número 1
+Tipo do IO: 1
+0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo de IO ao começo do processo: 2
 
 Processo número 3
-Entre com o tempo de chegada: 
-Entre com o tempo de serviço: 
-Entre com quantos IO terá esse processo: 
-IO número 0
-Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
-Entre com o tempo relativo ao começo do processo: 
+
+Tempo de chegada: 6
+Tempo de serviço: 9
+
+Numero de IO terá esse processo: 1
+
+IO número 1
+Tipo do IO: 1
+0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo de IO ao começo do processo: 2
 
 Processo número 4
-Entre com o tempo de chegada: 
-Entre com o tempo de serviço: 
-Entre com quantos IO terá esse processo: 
-IO número 0
-Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
-Entre com o tempo relativo ao começo do processo: 
 
-Instante | Processo
----------+---------
+Tempo de chegada: 8
+Tempo de serviço: 4
+
+Numero de IO terá esse processo: 1
+
+IO número 1
+Tipo do IO: 1
+0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo de IO ao começo do processo: 2
+
+Instante 	 | Processo
+-----------------+----------------------------------------
 0		 |	1	2	3	4	5	 	 	 	 	 	
 1		 |	+	 	 	 	 	
 2		 |	+	 	 	 	 	
 3		 |	+	 	 	 	 	
-4		 |	D	+	 	 	 	
+4		 |	D
+5		 |	D
+6		 |	D
+7		 |	D
 8		 |	 	+	 	 	 	
-9		 |	 	 	+	 	 	
+9		 |	 	+	 	 	 	
 10		 |	 	 	+	 	 	
 11		 |	 	 	+	 	 	
-17		 |	 	 	+	 	 	
+12		 |			F
+13		 |			F
+14		 |			F
+15		 |			F
+16		 |			F
+17		 |			F
 18		 |	 	 	+	 	 	
-19		 |	 	 	 	+	 	
+19		 |	 	 	+	 	 	
 20		 |	 	 	 	+	 	
 21		 |	 	 	 	+	 	
-27		 |	 	 	 	+	 	
+22		 |				F
+23		 |				F
+24		 |				F
+25		 |				F
+26		 |				F
+27		 |				F
 28		 |	 	 	 	+	 	
-29		 |	 	 	 	 	+	
+29		 |	 	 	 	+	 	
 30		 |	 	 	 	 	+	
 31		 |	 	 	 	 	+	
-37		 |	 	 	 	 	+	
-38		 |	+	 	 	 	 	
-39		 |	+	 	 	 	 	
-40		 |	+	 	 	 	 	
-41		 |	+	 	 	 	 	
-42		 |	 	+	 	 	 	
-43		 |	 	+	 	 	 	
-44		 |	 	+	 	 	 	
-45		 |	 	+	 	 	 	
-46		 |	 	+	 	 	 	
+32		 |					F
+33		 |					F
+34		 |					F
+35		 |					F
+36		 |					F
+37		 |					F
+38		 |	 	 	 	 	+	
+39		 |	-	 	 	 	 	
+40		 |	-	 	 	 	 	
+41		 |	-	 	 	 	 	
+42		 |	-	 	 	 	 	
+43		 |	 	-	 	 	 	
+44		 |	 	-	 	 	 	
+45		 |	 	-	 	 	 	
+46		 |		I
+47		 |		I
+48		 |		I
+49		 |		I
+50		 |		I
 51		 |	 	+	 	 	 	
-52		 |	 	+	 	 	 	
-53		 |	 	+	 	 	 	
-54		 |	 	 	+	 	 	
-55		 |	 	 	+	 	 	
-56		 |	 	 	+	 	 	
-57		 |	 	 	+	 	 	
-58		 |	 	 	 	+	 	
-59		 |	 	 	 	+	 	
-60		 |	 	 	 	+	 	
-61		 |	 	 	 	+	 	
+52		 |	 	 	-	 	 	
+53		 |	 	 	-	 	 	
+54		 |	 	 	-	 	 	
+55		 |	 	 	-	 	 	
+56		 |	 	 	 	-	 	
+57		 |	 	 	 	-	 	
+58		 |	 	 	 	-	 	
+59		 |	 	 	 	-	 	
+60		 |	 	-	 	 	 	
+61		 |	 	-	 	 	 	
