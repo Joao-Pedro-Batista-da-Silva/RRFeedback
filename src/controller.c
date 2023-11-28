@@ -57,32 +57,41 @@ int simula(struct processo p[]){
                 int tempoDeIO, tempoAntes = instanteAtual;
                 switch (IOAtual.tipo){
                     case disco:
-                        instanteAtual += TEMPO_DISCO;
+                        //mudançaJotape
+                        //instanteAtual += TEMPO_DISCO;
                         tempoDeIO = TEMPO_DISCO;
                         // mover processo para baixa prioridade
                         if(queueHigh.queue[queueHigh.front] == processosOrdenados[i].PID){
                             pop(&queueHigh);
                             push(processosOrdenados[i].PID, &queueLow);
+                            //adiçãoJotape
+                            tempoDesdeUltimoQuantum=0;
                         }
                         charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
                         break;
                         
                     case fita:
-                        instanteAtual += TEMPO_FITA;
+                        //mudançaJotape
+                        //instanteAtual += TEMPO_FITA;
                         tempoDeIO = TEMPO_FITA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
+                            //adiçãoJotape
+                            tempoDesdeUltimoQuantum=0;
                         }
                         charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
                         break;
 
                     case impressora:
-                        instanteAtual += TEMPO_IMPRESSORA;
+                        //mudançaJotape
+                        //instanteAtual += TEMPO_IMPRESSORA;
                         tempoDeIO = TEMPO_IMPRESSORA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
+                            //adiçãoJotape
+                            tempoDesdeUltimoQuantum=0;
                         }
                         charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
                         break;               

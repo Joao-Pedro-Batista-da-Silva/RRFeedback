@@ -4,543 +4,289 @@ FB      -
 tr      7
 IO      0
 tcIO    3
-trIO    3
 
 i1
 FA      1  2
-FB      -  
+FB      -  -
 tr      6  10
 IO      0  2
 tcIO    2  6
-trIO    3  5
 
 i2
 FA      1  2   3
-FB      -  
+FB      -  -   -
 tr      5  10  9
 IO      0  2   1
 tcIO    1  6   2
-trIO    3  5   5
 
 i3
 FA      1  2   3
-FB      -  
+FB      -  -   -
 tr      4  10  9
 IO      0  2   1
 tcIO    0  6   2
-trIO    3  5   5
 
 i4
-FA      1  2   3        (SUSPENSO)
-FB      -  
-tr      4  10  9
-IO      0  2   1        (EXECUTANDO)
-tcIO    0  6   2
-trIO    2  5   5
+FA      2   3  -
+FB      -   -  1
+tr      9  9  4
+IO      2   1  0
+tcIO    6   2  0
+
 
 i5
-FA      1  2   3        (SUSPENSO)
-FB      -  
-tr      4  10  9
-IO      0  2   1        (EXECUTANDO)
-tcIO    0  6   2
-trIO    1  5   5
+FA      2  3  -
+FB      -  -  1
+tr      8  9  4
+IO      2  1  0
+tcIO    5  2  0
 
 
 i6
-FA      1  2   3  4        (SUSPENSO)
-FB      -  
-tr      4  10  9  9
-IO      0  2   1  1      (EXECUTANDO)
-tcIO    0  6   2  2
-trIO    0  5   5  5
+FA      2  3  -  4
+FB      -  -  1  
+tr      7  9  4  9
+IO      2  1  0  1
+tcIO    4  2  0  2
 
 i7
-FA      2  3  4        
-FB               1
-tr      9  9  9  4
-IO      2  1  1  0    
-tcIO    5  2  2  0
-trIO    5  5  5  0
+FA      2  3  -  4
+FB      -  -  1  
+tr      6  9  4  9
+IO      2  1  0  1
+tcIO    3  2  0  2
 
 i8
-FA      2  3  4  5      
-FB                  1
-tr      8  9  9  4  4 
-IO      2  1  1  1  0    
-tcIO    4  2  2  2  0
-trIO    5  5  5  5  0
+FA      2  3  -  4  5 
+FB      -  -  1  -  -
+tr      5  9  4  9  4
+IO      2  1  0  1  1
+tcIO    2  2  0  2  2
 
 i9
-FA      2  3  4  5      
-FB                  1
-tr      7  9  9  4  4 
-IO      2  1  1  1  0    
-tcIO    3  2  2  2  0
-trIO    5  5  5  5  0
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      8  4  9  4  5
+IO      1  0  1  1  2
+tcIO    1  0  2  2  1
 
 i10
-FA      2  3  4  5      
-FB                  1
-tr      6  9  9  4  4 
-IO      2  1  1  1  0    
-tcIO    2  2  2  2  0
-trIO    5  5  5  5  0
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      7  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
 
 i11
-FA      2  3  4  5      
-FB                  1
-tr      5  9  9  4  4 
-IO      2  1  1  1  0    
-tcIO    1  2  2  2  0
-trIO    5  5  5  5  0
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      6  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
 
 i12
-FA      3  4  5      
-FB               1  2
-tr      8  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    1  2  2  0  1
-trIO    5  5  5  0  5
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      5  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
 
 i13
-FA      3  4  5      
-FB               1  2
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1
-trIO    5  5  5  0  5
-
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      4  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
 
 i14
-FA      3  4  5                 (SUSPENSO)
-FB               1  2           
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1           (EXECUTANDO)
-trIO    4  5  5  0  5
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      3  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
 
 i15
-FA      3  4  5                 (SUSPENSO)
-FB               1  2           
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1           (EXECUTANDO)
-trIO    3  5  5  0  5
+FA      3  -  4  5  -
+FB      -  1  -  -  2
+tr      2  4  9  4  5
+IO      1  0  1  1  2
+tcIO    0  0  2  2  1
+
 
 i16
-FA      3  4  5                 (SUSPENSO)
-FB               1  2           
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1           (EXECUTANDO)
-trIO    2  5  5  0  5
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  8  4  5  2
+IO      0  1  1  2  1
+tcIO    0  1  2  1  0
 
 i17
-FA      3  4  5                 (SUSPENSO)
-FB               1  2           
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1           (EXECUTANDO)
-trIO    1  5  5  0  5
-
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  7  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
 
 i18
-FA      3  4  5                 (SUSPENSO)
-FB               1  2           
-tr      7  9  4  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  2  0  1           (EXECUTANDO)
-trIO    0  5  5  0  5
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  6  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
+
 
 i19
-FA      4  5  3               
-FB               1  2           
-tr      9  4  7  4  5
-IO      1  1  1  0  2  
-tcIO    2  2  0  0  1           
-trIO    5  5  0  0  5
-
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  5  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
 
 i20
-FA      4  5  3               
-FB               1  2           
-tr      8  4  7  4  5
-IO      1  1  1  0  2  
-tcIO    1  2  0  0  1           
-trIO    5  5  0  0  5
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  4  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
 
 i21
-FA      4  5  3               
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2  
-tcIO    0  2  0  0  1           
-trIO    5  5  0  0  5
-
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  3  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
 
 i22
-FA      4  5  3            (SUSPENSO)   
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2       (EXECUTANDO)
-tcIO    0  2  0  0  1           
-trIO    4  5  0  0  5
-
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  2  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
 
 i23
-FA      4  5  3            (SUSPENSO)   
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2       (EXECUTANDO)
-tcIO    0  2  0  0  1           
-trIO    3  5  0  0  5
+FA      -  4  5  -  -
+FB      1  -  -  2  3 
+tr      4  2  4  5  2
+IO      0  1  1  2  1
+tcIO    0  0  2  1  0
+
+i23
+FA      -  5  -  -  -
+FB      1  -  2  3  4
+tr      4  3  5  2  2
+IO      0  1  2  1  1
+tcIO    0  1  1  0  0
 
 i24
-FA      4  5  3            (SUSPENSO)   
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2       (EXECUTANDO)
-tcIO    0  2  0  0  1           
-trIO    2  5  0  0  5
+FA      -  5  -  -  -
+FB      1  -  2  3  4
+tr      4  2  5  2  2
+IO      0  1  2  1  1
+tcIO    0  0  1  0  0
 
 i25
-FA      4  5  3            (SUSPENSO)   
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2       (EXECUTANDO)
-tcIO    0  2  0  0  1           
-trIO    1  5  0  0  5
+FA      -  5  -  -  -
+FB      1  -  2  3  4
+tr      4  1  5  2  2
+IO      0  1  2  1  1
+tcIO    0  0  1  0  0
 
 i26
-FA      4  5  3            (SUSPENSO)   
-FB               1  2           
-tr      7  4  7  4  5
-IO      1  1  1  0  2       (EXECUTANDO)
-tcIO    0  2  0  0  1           
-trIO    0  5  0  0  5
+FA      -  5  -  -  -
+FB      1  -  2  3  4
+tr      4  0  5  2  2
+IO      0  1  2  1  1
+tcIO    0  0  1  0  0
 
 i27
-FA      5  3  4              
-FB               1  2           
-tr      3  7  7  4  5
-IO      1  1  1  0  2       
-tcIO    1  0  0  0  1           
-trIO    5  0  0  0  5
+FA      -  -  -  -
+FB      1  2  3  4
+tr      3  5  2  2
+IO      0  2  1  1
+tcIO    0  1  0  0
 
 i28
-FA      5  3  4              
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2       
-tcIO    0  0  0  0  1           
-trIO    5  0  0  0  5
+FA      -  -  -  -
+FB      1  2  3  4
+tr      2  5  2  2
+IO      0  2  1  1
+tcIO    0  1  0  0
 
 i29
-FA      5  3  4                 (SUSPENSO)    
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2           (EXECUTANDO)
-tcIO    0  0  0  0  1           
-trIO    4  0  0  0  5
+FA      -  -  -  -
+FB      1  2  3  4
+tr      1  5  2  2
+IO      0  2  1  1
+tcIO    0  1  0  0
 
 i30
-FA      5  3  4                 (SUSPENSO)    
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2           (EXECUTANDO)
-tcIO    0  0  0  0  1           
-trIO    3  0  0  0  5
+FA      -  -  -  -
+FB      1  2  3  4
+tr      0  5  2  2
+IO      0  2  1  1
+tcIO    0  1  0  0
 
 i31
-FA      5  3  4                 (SUSPENSO)    
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2           (EXECUTANDO)
-tcIO    0  0  0  0  1           
-trIO    2  0  0  0  5
+FA      -  -  -
+FB      2  3  4
+tr      4  2  2
+IO      2  1  1
+tcIO    0  0  0
 
 i32
-FA      5  3  4                 (SUSPENSO)    
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2           (EXECUTANDO)
-tcIO    0  0  0  0  1           
-trIO    1  0  0  0  5
+FA      -  -  -
+FB      2  3  4
+tr      3  2  2
+IO      2  1  1
+tcIO    0  0  0
 
 i33
-FA      5  3  4                 (SUSPENSO)    
-FB               1  2           
-tr      2  7  7  4  5
-IO      1  1  1  0  2           (EXECUTANDO)
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
+FA      -  -  -
+FB      2  3  4
+tr      2  2  2
+IO      2  1  1
+tcIO    0  0  0
 
 i34
-FA      3  4  5                   
-FB               1  2           
-tr      6  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
-
+FA      -  -  -
+FB      2  3  4
+tr      1  2  2
+IO      2  1  1
+tcIO    0  0  0
 
 i35
-FA      3  4  5                   
-FB               1  2           
-tr      5  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
+FA      -  -  -
+FB      2  3  4
+tr      0  2  2
+IO      2  1  1
+tcIO    0  0  0
 
 i36
-FA      3  4  5                   
-FB               1  2           
-tr      4  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
-
-i36
-FA      3  4  5                   
-FB               1  2           
-tr      3  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
-
+FA      -  -
+FB      3  4
+tr      1  2
+IO      1  1
+tcIO    0  0
 
 i37
-FA      3  4  5                   
-FB               1  2           
-tr      2  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
+FA      -  -
+FB      3  4
+tr      0  2
+IO      1  1
+tcIO    0  0
 
 i38
-FA      3  4  5                   
-FB               1  2           
-tr      2  7  2  4  5
-IO      1  1  1  0  2           
-tcIO    0  0  0  0  1           
-trIO    0  0  0  0  5
+FA      -
+FB      4
+tr      1
+IO      1
+tcIO    0
+
 
 i39
-FA      4  5                  
-FB            1  2  3           
-tr      6  2  4  5  2
-IO      1  1  0  2  1           
-tcIO    0  0  0  1  0          
-trIO    0  0  0  5  0
-
-i40
-FA      4  5                  
-FB            1  2  3           
-tr      5  2  4  5  2
-IO      1  1  0  2  1           
-tcIO    0  0  0  1  0          
-trIO    0  0  0  5  0
-
-i41
-FA      4  5                  
-FB            1  2  3           
-tr      4  2  4  5  2
-IO      1  1  0  2  1           
-tcIO    0  0  0  1  0          
-trIO    0  0  0  5  0
-
-i42
-FA      4  5                  
-FB            1  2  3           
-tr      3  2  4  5  2
-IO      1  1  0  2  1           
-tcIO    0  0  0  1  0          
-trIO    0  0  0  5  0
-
-i43
-FA      4  5                  
-FB            1  2  3           
-tr      2  2  4  5  2
-IO      1  1  0  2  1           
-tcIO    0  0  0  1  0          
-trIO    0  0  0  5  0
-
-i44
-FA      5                  
-FB         1  2  3  4          
-tr      2  4  5  2  2
-IO      1  0  2  1  1         
-tcIO    0  0  1  0  0        
-trIO    0  0  0  5  0
-
-i45
-FA      5                  
-FB         1  2  3  4          
-tr      1  4  5  2  2
-IO      1  0  2  1  1         
-tcIO    0  0  1  0  0        
-trIO    0  0  5  0  0
-
-i46
-FA      5                  
-FB         1  2  3  4          
-tr      0  4  5  2  2
-IO      1  0  2  1  1         
-tcIO    0  0  1  0  0        
-trIO    0  0  5  0  0
-
-i47
-FA      -                 
-FB      1  2  3  4          
-tr      3  5  2  2
-IO      0  2  1  1         
-tcIO    0  1  0  0        
-trIO    0  5  0  0
-
-i48
-FA      -                 
-FB      1  2  3  4          
-tr      2  5  2  2
-IO      0  2  1  1         
-tcIO    0  1  0  0        
-trIO    0  5  0  0
-
-i49
-FA      -                 
-FB      1  2  3  4          
-tr      1  5  2  2
-IO      0  2  1  1         
-tcIO    0  1  0  0        
-trIO    0  5  0  0
-
-i50
-FA      -                 
-FB      1  2  3  4          
-tr      0  5  2  2
-IO      0  2  1  1         
-tcIO    0  1  0  0        
-trIO    0  5  0  0
-
-i51
-FA      -                 
-FB      2  3  4          
-tr      4  2  2
-IO      2  1  1         
-tcIO    0  0  0        
-trIO    5  0  0
-
-
-i52
-FA      -                 
-FB      2  3  4             (SUSPENSO)
-tr      4  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    4  0  0
-
-i52
-FA      -                 
-FB      2  3  4             (SUSPENSO)
-tr      4  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    3  0  0
-
-i53
-FA      -                 
-FB      2  3  4             (SUSPENSO)
-tr      4  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    2  0  0
-
-i54
-FA      -                 
-FB      2  3  4             (SUSPENSO)
-tr      4  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    1  0  0
-
-i55
-FA      -                 
-FB      2  3  4             (SUSPENSO)
-tr      4  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    0  0  0
-
-
-i56
-FA      2                 
-FB         3  4             (SUSPENSO)
-tr      3  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    0  0  0
-
-i57
-FA      2                 
-FB         3  4             (SUSPENSO)
-tr      2  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    0  0  0
-
-i58
-FA      2                 
-FB         3  4             (SUSPENSO)
-tr      1  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    0  0  0
-
-i59
-FA      2                 
-FB         3  4             (SUSPENSO)
-tr      0  2  2
-IO      2  1  1             (EXECUTANDO) 
-tcIO    0  0  0        
-trIO    0  0  0
-
-i60
-FA      -               
-FB      3  4             (SUSPENSO)
-tr      1  2
-IO      1  1             (EXECUTANDO) 
-tcIO    0  0        
-trIO    0  0
-
-
-i61
-FA      -               
-FB      3  4             (SUSPENSO)
-tr      0  2
-IO      1  1             (EXECUTANDO) 
-tcIO    0  0        
-trIO    0  0
-
-i62
-FA      -               
-FB      4             (SUSPENSO)
-tr      1
-IO      1             (EXECUTANDO) 
-tcIO    0        
-trIO    0
-
-i63
-FA      -               
-FB      4             (SUSPENSO)
+FA      -
+FB      4
 tr      0
-IO      1             (EXECUTANDO) 
-tcIO    0        
-trIO    0
+IO      1
+tcIO    0
 
-
-0   7    1      0    3    3       
-1   10   1      2    6    4
-2   9    1      1    2    5
-6   9    1      1    2    5
-8   4    1      1    2    5
-tc  tr   qtIO   IO   tcIO trIO
