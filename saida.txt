@@ -1,0 +1,82 @@
+Processo número 0
+Entre com o tempo de chegada: 
+Entre com o tempo de serviço: 
+Entre com quantos IO terá esse processo: 
+IO número 0
+Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo ao começo do processo: 
+
+Processo número 1
+Entre com o tempo de chegada: 
+Entre com o tempo de serviço: 
+Entre com quantos IO terá esse processo: 
+IO número 0
+Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo ao começo do processo: 
+
+Processo número 2
+Entre com o tempo de chegada: 
+Entre com o tempo de serviço: 
+Entre com quantos IO terá esse processo: 
+IO número 0
+Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo ao começo do processo: 
+
+Processo número 3
+Entre com o tempo de chegada: 
+Entre com o tempo de serviço: 
+Entre com quantos IO terá esse processo: 
+IO número 0
+Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo ao começo do processo: 
+
+Processo número 4
+Entre com o tempo de chegada: 
+Entre com o tempo de serviço: 
+Entre com quantos IO terá esse processo: 
+IO número 0
+Entre com o tipo do IO: 0 = Disco 	 1 = Fita 	 2 = Impressora
+Entre com o tempo relativo ao começo do processo: 
+
+Instante | Processo
+---------+---------
+0		 |	1	2	3	4	5	 	 	 	 	 	
+1		 |	+	 	 	 	 	
+2		 |	+	 	 	 	 	
+3		 |	+	 	 	 	 	
+4		 |	D	+	 	 	 	
+8		 |	 	+	 	 	 	
+9		 |	 	 	+	 	 	
+10		 |	 	 	+	 	 	
+11		 |	 	 	+	 	 	
+17		 |	 	 	+	 	 	
+18		 |	 	 	+	 	 	
+19		 |	 	 	 	+	 	
+20		 |	 	 	 	+	 	
+21		 |	 	 	 	+	 	
+27		 |	 	 	 	+	 	
+28		 |	 	 	 	+	 	
+29		 |	 	 	 	 	+	
+30		 |	 	 	 	 	+	
+31		 |	 	 	 	 	+	
+37		 |	 	 	 	 	+	
+38		 |	+	 	 	 	 	
+39		 |	+	 	 	 	 	
+40		 |	+	 	 	 	 	
+41		 |	+	 	 	 	 	
+42		 |	 	+	 	 	 	
+43		 |	 	+	 	 	 	
+44		 |	 	+	 	 	 	
+45		 |	 	+	 	 	 	
+46		 |	 	+	 	 	 	
+51		 |	 	+	 	 	 	
+52		 |	 	+	 	 	 	
+53		 |	 	+	 	 	 	
+54		 |	 	 	+	 	 	
+55		 |	 	 	+	 	 	
+56		 |	 	 	+	 	 	
+57		 |	 	 	+	 	 	
+58		 |	 	 	 	+	 	
+59		 |	 	 	 	+	 	
+60		 |	 	 	 	+	 	
+61		 |	 	 	 	+	 	

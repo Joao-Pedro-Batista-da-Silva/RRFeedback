@@ -10,27 +10,30 @@ int main(){
     int qntdIO;
 
     for(int i = 0; i < MAX_PROCESSOS; i++){
-        //printf("Processo número %d\n", i);
+        printf("Processo número %d\n", i);
         
-        //printf("Entre com o tempo de chegada: ");
+        printf("Entre com o tempo de chegada: ");
         scanf("%d", &processos[i].tempoChegada);
+        puts("");
 
-        //printf("Entre com o tempo de serviço: ");
+        printf("Entre com o tempo de serviço: ");
         scanf("%d", &processos[i].tempoServico);
+        puts("");
 
-        //printf("Entre com quantos IO terá esse processo: ");
+        printf("Entre com quantos IO terá esse processo: ");
         scanf("%d", &qntdIO);
         processos[i].quantidadeIO = qntdIO;
         processos[i].listaIO = (io*) malloc(sizeof(io) * qntdIO);
+        puts("");
 
         for(int j = 0; j < qntdIO; j++){
-            // printf("IO número %d\n", j);
+            printf("IO número %d\n", j);
 
-            // printf("Entre com o tipo do IO: ");
-            // printf("0 = Disco \t 1 = Fita \t 2 = Impressora\n")
+            printf("Entre com o tipo do IO: ");
+            printf("0 = Disco \t 1 = Fita \t 2 = Impressora\n");
             scanf("%d", &processos[i].listaIO[j].tipo);
 
-            // printf("Entre com o tempo relativo ao começo do processo: ");
+            printf("Entre com o tempo relativo ao começo do processo: ");
             scanf("%d", &processos[i].listaIO[j].tempoRelativo);
             
             puts("\n");
@@ -42,6 +45,6 @@ int main(){
         processos[i].status = novo;
     }
     
-    calculaTurnaround(processos);
+    simula(processos);
     return 0;
 }

@@ -1,3 +1,42 @@
+║ - Fita
+░ - Disco
+▒ - Impressora
+█ - Processo
+
+
+instante | processos
+---------+----------
+0        |    1    2
+(clear)
+instante | processos
+---------+----------
+0        |    1    2
+1        |    █
+No instante 1, o 1 executou 1 instante.
+(clear)
+(sleep 3000ms)
+instante | processos
+---------+----------
+0        |    1    2
+1        |    █
+2        |    █
+3        |    ║
+No instante 3, o processo 1 entra em suspenso, 
+
+instante | processos
+---------+----------
+0        |    1    2
+1        |    █
+2        |    █
+3        |    ║
+4        |    ║
+5        |    ║
+6        |         █
+7        |         █
+
+
+
+
 function cpu()
     criaFilaDisco
     criaFilaFita
@@ -44,13 +83,3 @@ quantum 5
 5 IO (processo 2 tempoChegada=5 entra na fila, não é executado)
 7 processo 1 (t = 3) (apenas se o tipo do IO não for de baixa prioridade)
 
-instante |    1    2
-0        |
-1        |    █
-2        |    █
-3             █
-4             █
-5             █
-6                  █
-7                  █
-8                  █        

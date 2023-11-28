@@ -11,7 +11,6 @@ void push(int element, queue_type *queueTemp) {
     queueTemp->rear++;
     queueTemp->queue[queueTemp->rear] = element;
     queueTemp->numElementos++;
-    printf("entrou %d na fila, numElementos %d\n", element, queueTemp->numElementos);
 }
 
 int pop(queue_type *queueTemp)  {
@@ -22,7 +21,6 @@ int pop(queue_type *queueTemp)  {
     int element = queueTemp->queue[queueTemp->front];
     queueTemp->front++;
     queueTemp->numElementos--;
-    printf("saiu %d da fila, numElementos %d\n", element, queueTemp->numElementos);
     return element;
 }
 
@@ -31,7 +29,6 @@ void printQueue(queue_type *queueTemp){
     for(int i = queueTemp->front; i < queueTemp->numElementos + queueTemp->front; i++){
         printf("%d ", queueTemp->queue[i]);
     }
-    printf("| numElementos: %d\n", queueTemp->numElementos);
     puts("");
 }
 
