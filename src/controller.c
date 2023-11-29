@@ -49,7 +49,6 @@ int simula(struct processo p[]){
         }
 
         for(int i = 0; i < MAX_PROCESSOS; i++){
-            // if(processosOrdenados[i].quantidadeIO > 0){
             for(int j = 0; j < processosOrdenados[i].quantidadeIO; j++){
                 io IOAtual = processosOrdenados[i].listaIO[j];
                 if(IOAtual.tempoRelativo != 0) continue;
@@ -57,70 +56,45 @@ int simula(struct processo p[]){
                 int tempoDeIO, tempoAntes = instanteAtual;
                 switch (IOAtual.tipo){
                     case disco:
-                        //mudançaJotape
-                        //instanteAtual += TEMPO_DISCO;
                         tempoDeIO = TEMPO_DISCO;
-                        // mover processo para baixa prioridade
                         if(queueHigh.queue[queueHigh.front] == processosOrdenados[i].PID){
                             pop(&queueHigh);
                             push(processosOrdenados[i].PID, &queueLow);
-                            //adiçãoJotape
                         }
                         tempoDesdeUltimoQuantum=0;
-                        // charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
                         break;
                         
                     case fita:
-                        //mudançaJotape
-                        //instanteAtual += TEMPO_FITA;
                         tempoDeIO = TEMPO_FITA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
-                            //adiçãoJotape
                         }
                         tempoDesdeUltimoQuantum=0;
-                        // charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
                         break;
 
                     case impressora:
-                        //mudançaJotape
-                        //instanteAtual += TEMPO_IMPRESSORA;
                         tempoDeIO = TEMPO_IMPRESSORA;
                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
-                            //adiçãoJotape
                         }
                         tempoDesdeUltimoQuantum=0;
-                        // charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
                         break;               
                     default:
                         break;
                     }
 
-                //for(int j = 1; j <= tempoDeIO; j++){
                 processosOrdenados[i].listaIO[j].tempoRelativo = -1;
-                //}
-                // }
             }
 
             // Coloca o processo na fila se ele ainda não está nela, se ele se encontra no range do instante e ainda tem tempo restante
             if(processosOrdenados[i].tempoChegada <= instanteAtual && processosOrdenados[i].tempoRestante > 0){
-                // printf("PID %d entrou no if | numElementos: %d | front: %d | rear: %d\n", processosOrdenados[i].PID, queueHigh.numElementos, queueHigh.front, queueHigh.rear);
                 int processoNaFila = 0;
-
-                /*
-                possiveis processos:
-                - processo na alta e não na baixa: ele não vai ser adicionado na fila, e vai ser exexcutado se for o primeiro
-                - processo na baixa e não na alta: não vai ser adicionado na fila, e vai ser executado se for o primeiro da fila e estiver sem fila de alta prioridade
-                - processo nem na baixa e nem na alta: vai ser adicionado na fila de alta prioridade
-                */
 
                 if(queueHigh.numElementos != 0){
                     for(int j = queueHigh.front; j < queueHigh.numElementos + queueHigh.front; j++){
                         if(processosOrdenados[i].PID == queueHigh.queue[j]){
-                            // printf("%d já está na fila de alta\n", processosOrdenados[i].PID);
                             processoNaFila = 1;
                         }
                     }
@@ -129,7 +103,6 @@ int simula(struct processo p[]){
                 if(queueLow.numElementos != 0) {
                     for(int j = queueLow.front; j < queueLow.numElementos + queueLow.front; j++){
                         if(processosOrdenados[i].PID == queueLow.queue[j]){
-                            // printf("%d já está na fila de BAIXA\n", processosOrdenados[i].PID);
                             processoNaFila = 1;
                         }
                     }
@@ -140,14 +113,6 @@ int simula(struct processo p[]){
                 }
             }
         }
-
-        // if(queueHigh.numElementos > 0){
-        //     printf("(alta prioridade) ");
-        //     printQueue(&queueHigh);
-        // } else if(queueLow.numElementos > 0){
-        //     printf("(BAIXA prioridade) ");
-        //     printQueue(&queueLow);
-        // }
         
         // Faz lógica de retirar 1 do tempo do processo, retirar ele da fila e terminar quantum
         if(queueHigh.numElementos > 0){
@@ -162,15 +127,11 @@ int simula(struct processo p[]){
                 for(int i = 0; i < processosOrdenados[PIDAtual].quantidadeIO; i++){
                     processosOrdenados[PIDAtual].listaIO[i].tempoRelativo -=1;
                 }
-                // printf("processo PID %d tempo -= 1, agora com tempoRestante: %d\n", PIDAtual, processosOrdenados[PIDAtual].tempoRestante);
             }
 
             // Se já passou um quantum, tira da fila e reinicia o quantum
             if((tempoDesdeUltimoQuantum == QUANTUM && instanteAtual != 0) || processosOrdenados[PIDAtual].tempoRestante <= 0){
-                if(processosOrdenados[PIDAtual].tempoRestante <= 0){
-                    // printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
-                } else {
-                    // printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
+                if(processosOrdenados[PIDAtual].tempoRestante > 0){
                     if(processoVoltandoDeIO == 0){
                         push(processosOrdenados[PIDAtual].PID, &queueLow);
                     }
@@ -189,15 +150,9 @@ int simula(struct processo p[]){
                 for(int i = 0; i < processosOrdenados[PIDAtual].quantidadeIO; i++){
                     processosOrdenados[PIDAtual].listaIO[i].tempoRelativo -=1;
                 }
-                // printf("BAIXA PRIORIDADE processo PID %d tempo -= 1, agora com tempoRestante: %d\n", PIDAtual, processosOrdenados[PIDAtual].tempoRestante);
             }
 
             if(tempoDesdeUltimoQuantum == QUANTUM && instanteAtual != 0 || processosOrdenados[PIDAtual].tempoRestante <= 0){
-                if(processosOrdenados[PIDAtual].tempoRestante <= 0){
-                    // printf("%d retirado da fila porque ele finalizou\n", PIDAtual);
-                } else {
-                    // printf("%d retirado da fila porque passou um quantum\n", PIDAtual);
-                }
                 pop(&queueLow);
                 tempoDesdeUltimoQuantum = 0;
             }
@@ -206,25 +161,18 @@ int simula(struct processo p[]){
         // Verifica se todos os processos finalizaram
         for(int i = 0; i < MAX_PROCESSOS; i++){
             if(processosOrdenados[i].tempoRestante <= 0){
-                // printf("finalizou\n");
                 contadorFinalizados += 1;
             }
         }
 
-        // if(!processoVoltandoDeIO){
-            for(int i = 0; i < MAX_PROCESSOS; i++)
-                printf("%c\t", charProcesso[i]);
-        // }
+        for(int i = 0; i < MAX_PROCESSOS; i++)
+            printf("%c\t", charProcesso[i]);
         
         printf("\n");
         instanteAtual += 1;
         if(instanteAtual == 1) continue;
         tempoDesdeUltimoQuantum += 1;
     }
-
-    // for(int i = 0; i < MAX_PROCESSOS; i++){
-    //     printf("Processo chega:%d\n",processosOrdenados[i].tempoChegada);
-    // }
 
     return 0;
 }

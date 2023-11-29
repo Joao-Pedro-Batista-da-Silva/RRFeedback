@@ -1,0 +1,137 @@
+diff --git a/src/controller.c b/src/controller.c
+index b78583c..c2bf3c2 100644
+--- a/src/controller.c
++++ b/src/controller.c
+@@ -57,59 +57,56 @@ int simula(struct processo p[]){
+                 int tempoDeIO, tempoAntes = instanteAtual;
+                 switch (IOAtual.tipo){
+                     case disco:
+-                        //mudançaJotape
+                         //instanteAtual += TEMPO_DISCO;
+                         tempoDeIO = TEMPO_DISCO;
+                         // mover processo para baixa prioridade
+                         if(queueHigh.queue[queueHigh.front] == processosOrdenados[i].PID){
++                            printf("======== HIGH =========");
+                             pop(&queueHigh);
+                             push(processosOrdenados[i].PID, &queueLow);
+-                            //adiçãoJotape
+-                            tempoDesdeUltimoQuantum=0;
+                         }
+-                        charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
++                        tempoDesdeUltimoQuantum=0;
++                        // charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
+                         break;
+                         
+                     case fita:
+-                        //mudançaJotape
+                         //instanteAtual += TEMPO_FITA;
+                         tempoDeIO = TEMPO_FITA;
+                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
+                             pop(&queueLow);
++                            printf("======== HIGH =========");
+                             push(processosOrdenados[i].PID, &queueHigh);
+-                            //adiçãoJotape
+-                            tempoDesdeUltimoQuantum=0;
+                         }
+-                        charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
++                        tempoDesdeUltimoQuantum=0;
++                        // charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
+                         break;
+ 
+                     case impressora:
+-                        //mudançaJotape
+                         //instanteAtual += TEMPO_IMPRESSORA;
+                         tempoDeIO = TEMPO_IMPRESSORA;
+                         if(queueLow.queue[queueLow.front] == processosOrdenados[i].PID){
+                             pop(&queueLow);
++                            printf("======== HIGH =========");
+                             push(processosOrdenados[i].PID, &queueHigh);
+-                            //adiçãoJotape
+-                            tempoDesdeUltimoQuantum=0;
+                         }
+-                        charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
++                        tempoDesdeUltimoQuantum=0;
++                        // charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
+                         break;               
+                     default:
+                         break;
+                     }
+-                for(int k = 0; k < i; k++)
+-                    printf("\t");
+-                printf("%c", charProcesso[processosOrdenados[i].PID]);
+-                printf("\n");
+-
+-                for(int j = 1; j <= tempoDeIO; j++){
+-                    printf("%d\t\t |\t", tempoAntes+j);
+-                    for(int k = 0; k < i; k++)
+-                        printf("\t");
+-                    printf("%c", charProcesso[processosOrdenados[i].PID]);
+-                    if(j != tempoDeIO) printf("\n");
+-                }
++                // for(int k = 0; k < i; k++)
++                //     printf("\t");
++                // printf("%c", charProcesso[processosOrdenados[i].PID]);
++                // printf("\n");
++
++                // for(int j = 1; j <= tempoDeIO; j++){
++                //     printf("%d\t\t |\t", tempoAntes+j);
++                //     for(int k = 0; k < i; k++)
++                //         printf("\t");
++                //     printf("%c", charProcesso[processosOrdenados[i].PID]);
++                //     if(j != tempoDeIO) printf("\n");
++                // }
+                 processosOrdenados[i].listaIO[j].tempoRelativo = -1;
+                 // }
+             }
+@@ -145,6 +142,7 @@ int simula(struct processo p[]){
+                 }
+                 
+                 if(processoNaFila == 0){
++                    printf("======== HIGH =========");
+                     push(processosOrdenados[i].PID, &queueHigh);
+                 }
+             }
+@@ -165,7 +163,6 @@ int simula(struct processo p[]){
+             // Retira 1 do tempo restante se não for o primeiro instante
+             if(processosOrdenados[PIDAtual].tempoRestante > 0 && instanteAtual != 0){
+                 processosOrdenados[PIDAtual].tempoRestante -= 1;
+-                charProcesso[PIDAtual] = CHAR_FILA_ALTA;
+ 
+                 // Tira 1 tempo relativo de cada IO do processo
+                 for(int i = 0; i < processosOrdenados[PIDAtual].quantidadeIO; i++){
+@@ -184,9 +181,19 @@ int simula(struct processo p[]){
+                         push(processosOrdenados[PIDAtual].PID, &queueLow);
+                     }
+                 }
++                printf("======== HIGH =========");
+                 pop(&queueHigh);
+                 tempoDesdeUltimoQuantum = 0;
++                if(instanteAtual != 0){
++                    int PIDAAAAA = queueHigh.queue[queueHigh.front];
++                    printf("\n\nPIDAAAAAAAAAAAAAAAA POASMDKAPSODKM front:%d %d\n\n", queueHigh.front, PIDAAAAA);
++                    // charProcesso[PIDAAAAA] = CHAR_FILA_ALTA;
++                }
+             }
++
++            // if(charProcesso[queueHigh.queue[queueHigh.front]] != CHAR_FILA_ALTA)
++            //     charProcesso[PIDAtual] = CHAR_FILA_ALTA;
++
+         } else if(queueLow.numElementos > 0){
+             int PIDAtual = queueLow.queue[queueLow.front];
+ 
+@@ -220,10 +227,11 @@ int simula(struct processo p[]){
+             }
+         }
+ 
+-        if(!processoVoltandoDeIO){
+-            for(int i = 0; i < MAX_PROCESSOS; i++)
+-                printf("%c\t", charProcesso[i]);
+-        }
++        // charProcesso[2] = '+'
++        // if(!processoVoltandoDeIO){
++        for(int i = 0; i < MAX_PROCESSOS; i++)
++            printf("%c\t", charProcesso[i]);
++        // }
+         
+         printf("\n");
+         instanteAtual += 1;

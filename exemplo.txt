@@ -29,7 +29,7 @@ tcIO    0  6   2
 i4
 FA      2   3  -
 FB      -   -  1
-tr      9  9  4
+tr      9   9  4
 IO      2   1  0
 tcIO    6   2  0
 
