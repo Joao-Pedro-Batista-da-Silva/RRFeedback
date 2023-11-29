@@ -65,9 +65,9 @@ int simula(struct processo p[]){
                             pop(&queueHigh);
                             push(processosOrdenados[i].PID, &queueLow);
                             //adiçãoJotape
-                            tempoDesdeUltimoQuantum=0;
                         }
-                        charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
+                        tempoDesdeUltimoQuantum=0;
+                        // charProcesso[processosOrdenados[i].PID] = CHAR_DISCO;
                         break;
                         
                     case fita:
@@ -78,9 +78,9 @@ int simula(struct processo p[]){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
                             //adiçãoJotape
-                            tempoDesdeUltimoQuantum=0;
                         }
-                        charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
+                        tempoDesdeUltimoQuantum=0;
+                        // charProcesso[processosOrdenados[i].PID] = CHAR_FITA;
                         break;
 
                     case impressora:
@@ -91,26 +91,17 @@ int simula(struct processo p[]){
                             pop(&queueLow);
                             push(processosOrdenados[i].PID, &queueHigh);
                             //adiçãoJotape
-                            tempoDesdeUltimoQuantum=0;
                         }
-                        charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
+                        tempoDesdeUltimoQuantum=0;
+                        // charProcesso[processosOrdenados[i].PID] = CHAR_IMPRESSORA;
                         break;               
                     default:
                         break;
                     }
-                for(int k = 0; k < i; k++)
-                    printf("\t");
-                printf("%c", charProcesso[processosOrdenados[i].PID]);
-                printf("\n");
 
-                for(int j = 1; j <= tempoDeIO; j++){
-                    printf("%d\t\t |\t", tempoAntes+j);
-                    for(int k = 0; k < i; k++)
-                        printf("\t");
-                    printf("%c", charProcesso[processosOrdenados[i].PID]);
-                    if(j != tempoDeIO) printf("\n");
-                }
+                //for(int j = 1; j <= tempoDeIO; j++){
                 processosOrdenados[i].listaIO[j].tempoRelativo = -1;
+                //}
                 // }
             }
 
@@ -220,10 +211,10 @@ int simula(struct processo p[]){
             }
         }
 
-        if(!processoVoltandoDeIO){
+        // if(!processoVoltandoDeIO){
             for(int i = 0; i < MAX_PROCESSOS; i++)
                 printf("%c\t", charProcesso[i]);
-        }
+        // }
         
         printf("\n");
         instanteAtual += 1;
